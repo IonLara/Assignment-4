@@ -26,11 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window?.rootViewController = tabVC
     
     // 5 cities
-    let vancouver = City(name: "Vancouver", temp: 15, precipitation: 95, icon: "canada", summary: "Rainy")
-    let verona = City(name: "Verona", temp: 22, precipitation: 20, icon: "italy", summary: "Cloudy")
-    let tokyo = City(name: "Tokyo", temp: 24, precipitation: 40, icon: "japan", summary: "Sunny")
-    let saoPaulo = City(name: "Sao Paulo", temp: 32, precipitation: 20, icon: "brazil", summary: "Sunny")
-    let seoul = City(name: "Seoul", temp: 35, precipitation: 50, icon: "skorea", summary: "Sunny")
+    let vancouver = City(name: "Vancouver", temp: 15, precipitation: 95, icon: "canada", summary: "Rainy", emoji: "🇨🇦")
+    let verona = City(name: "Verona", temp: 22, precipitation: 20, icon: "italy", summary: "Cloudy", emoji: "🇮🇹")
+    let tokyo = City(name: "Tokyo", temp: 24, precipitation: 40, icon: "japan", summary: "Sunny", emoji: "🇯🇵")
+    let saoPaulo = City(name: "Sao Paulo", temp: 32, precipitation: 20, icon: "brazil", summary: "Sunny", emoji: "🇧🇷")
+    let seoul = City(name: "Seoul", temp: 35, precipitation: 50, icon: "skorea", summary: "Sunny", emoji: "🇰🇷")
     
     let vanVC = CityViewController()
     vanVC.city = vancouver
@@ -47,9 +47,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let seoulVC = CityViewController()
     seoulVC.city = seoul
     seoulVC.tabBarItem = UITabBarItem(title: seoul.name, image: UIImage(named: seoul.icon), selectedImage: nil)
-    let cities = [vanVC, verVC, tokVC, spVC, seoulVC]
+      
+      let vanNav = UINavigationController(rootViewController: vanVC)
+      let verNav = UINavigationController(rootViewController: verVC)
+      let tokNav = UINavigationController(rootViewController: tokVC)
+      let spNav = UINavigationController(rootViewController: spVC)
+      let seoulNav = UINavigationController(rootViewController: seoulVC)
+      
+    let cities = [vanNav, verNav, tokNav, spNav, seoulNav]
     
-    tabVC.viewControllers = cities.map { UINavigationController(rootViewController: $0) }
+      tabVC.setViewControllers(cities, animated: true)
+//    tabVC.viewControllers = cities.map { UINavigationController(rootViewController: $0) }
     
   }
   

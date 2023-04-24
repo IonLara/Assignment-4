@@ -32,7 +32,12 @@ class CityViewController: UIViewController {
 	}
   
   @objc func showWeatherDetails() {
-    
+    let details = DetailsViewController()
+      details.country = city.emoji
+      details.city = city.name
+      details.temperature = city.temp
+      details.summary = city.summary
+      navigationController?.pushViewController(details, animated: true)
   }
 }
 
